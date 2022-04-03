@@ -1,23 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<%- include('./partials/head.ejs') %>
 <body>
     <header>    
         <h1>Search. Our. Collection.</h1>
         
     </header>
     <main>
-        <form>
-            <input type="text" placeholder="bijv. Rembrandt">
+        <form method="get" action="/search" data-search-form>
+            <input type="text" name="q" placeholder="bijv. Rembrandt" data-search-input />
             <button type="button">Annuleren</button>
         </form>
         <section class="search-section" data-route="normal"></section>
-        <section class="details disabled" data-route="detail"></section>
+        <h1><%=sub%></h1>
     </main>
 </body>
-</html>
+<%- include('./partials/footer.ejs') %>

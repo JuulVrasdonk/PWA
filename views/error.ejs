@@ -1,0 +1,14 @@
+<%- include('./partials/head.ejs') %>
+<body>
+    <main class="focussed-main">
+        <form method="get" action="/search" data-search-form>
+            <input  class="focussed-searchbar" type="text" name="q" placeholder="bijv. Rembrandt" data-search-input value="<%= searchValue %>"/>
+            <button class="focussed-hidebutton" type="button"><a href="/">Annuleren</a></button>
+        </form>
+        <section class="error-section">
+            <h2>Geen resultaat</h2>
+            <p>Probeer een andere zoekterm.</p>
+        </section>
+    </main>
+</body>
+<%- include('./partials/footer.ejs') %>

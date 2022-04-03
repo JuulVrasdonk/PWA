@@ -1,0 +1,11 @@
+<%- include('./partials/head.ejs') %>
+<main class="focussed-main details">
+    <a href="javascript:history.back()">terug</a>
+    <h2><%= artwork.title %></h2>
+    <p>Author: <%= artwork.principalMaker %></p>
+    <% if(artwork.webImage) {%> 
+        <img src="<%= artwork.webImage.url %>" alt="<%= artwork.title %> by <%= artwork.principalMaker %>">
+    <% } else{ %>
+    <% } %>
+</main>
+<%- include('./partials/footer') %>
