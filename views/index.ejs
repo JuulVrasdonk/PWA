@@ -5,11 +5,11 @@
         
     </header>
     <main>
-        <form method="get" action="/search" data-search-form>
+        <form method="get" action="/search" data-search-form id="form" >
             <input type="text" name="q" placeholder="bijv. Rembrandt" data-search-input />
             <button type="button">Annuleren</button>
         </form>
-        <section class="search-section" data-route="normal"></section>
+        <strong class="hidden" id="offlineNotification">Je bent offline.</strong>
     </main>
 </body>
 <%- include('./partials/footer.ejs') %>

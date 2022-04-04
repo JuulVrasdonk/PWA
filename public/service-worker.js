@@ -1,18 +1,20 @@
 const PRECACHE = 'precache-v1';
 const RUNTIME = 'runtime';
+const CORE_CACHE_NAME = 'offline fallback'
 
 // A list of local resources we always want to be cached.
-const PRECACHE_URLS = [
+const CORE_ASSETS = [
   '/',
+  '/js/script.js',
   '/style.css',
-  '/js/script.js'
+  '/assets/Nachtwacht.jpeg'
 ];
 
 // The install handler takes care of precaching the resources we always need.
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(PRECACHE)
-      .then(cache => cache.addAll(PRECACHE_URLS))
+      .then(cache => cache.addAll(CORE_ASSETS))
       .then(self.skipWaiting())
   );
 });
@@ -31,27 +33,22 @@ self.addEventListener('activate', event => {
   );
 });
 
-// The fetch handler serves responses for same-origin resources from a cache.
-// If no response is found, it populates the runtime cache with the response
-// from the network before returning it to the page.
-self.addEventListener('fetch', event => {
-  // Skip cross-origin requests, like those for Google Analytics.
-  if (event.request.url.startsWith(self.location.origin)) {
-    event.respondWith(
-      caches.match(event.request).then(cachedResponse => {
-        if (cachedResponse) {
-          return cachedResponse;
-        }
-
-        return caches.open(RUNTIME).then(cache => {
-          return fetch(event.request).then(response => {
-            // Put a copy of the response in the runtime cache.
-            return cache.put(event.request, response.clone()).then(() => {
-              return response;
-            });
-          });
-        });
+self.addEventListener("fetch", (event) => {
+  const req = event.request
+  // console.log("Fetching:" + req.url)
+  
+  // show cached request from cache
+  event.respondWith(
+      caches.match(req)
+          .then(cachedRes => {
+              if (cachedRes) {
+                  return cachedRes
+              }
+              return fetch(req)
+                  .then((fetchRes) => fetchRes)
+                  .catch((err) => {
+                      return caches.open(CORE_CACHE_NAME)
+                      .then(cache => cache.match('/offline'))})
       })
-    );
-  }
-});
+  )
+})

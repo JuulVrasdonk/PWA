@@ -67,6 +67,11 @@ app.get('/detail/:id', function (req, res) {
     })
 })
 
+app.get('/offline', function (req, res) {
+  res.render('offline', {
+    pageTitle: 'Offline'
+  })
+})
 
 app.set('port', port || 8000)
 

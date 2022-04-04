@@ -216,3 +216,7 @@ figcaption {
     margin-left: 5%;
     margin-top: 16px;
 }
+
+.hidden {
+    display: none;
+}
