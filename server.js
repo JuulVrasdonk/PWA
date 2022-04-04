@@ -18,8 +18,7 @@ app.use(express.static('public'))
 // Maak een route voor de index
 app.get('/', function (req, res) {
   res.render('index', {
-    pageTitle: 'Search the museum',
-    sub: req.query.q
+    pageTitle: 'Search the museum'
   })
 
 })
@@ -67,7 +66,6 @@ app.get('/detail/:id', function (req, res) {
       })
     })
 })
-
 
 
 app.set('port', port || 8000)

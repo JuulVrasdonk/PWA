@@ -7,8 +7,10 @@ if(variables.form && variables.hideButton) {
     cancelSearch();
 } 
 
-
-
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js');
+}
+  
 
 
 
