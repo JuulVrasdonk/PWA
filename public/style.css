@@ -1,11 +1,13 @@
 @font-face {
     font-family: "Rijks-Normal";
     src: url("./assets/fonts/Rijksmuseum-Normal.woff") format("woff");
+    font-display: swap;
 }
 
 @font-face {
     font-family: "Rijks-Bold";
     src: url("./assets/fonts/Rijksmuseum-Bold.woff") format("woff");
+    font-display: swap;
 }
 
 

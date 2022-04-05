@@ -1,11 +1,16 @@
 require('dotenv').config()
 const express = require('express')
+const minify = require('express-minify')
+const compression = require('compression')
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args))
 
 const app = express()
 const port = process.env.PORT
 const apiKey = process.env.APIKEY
 const apiURL = `https://www.rijksmuseum.nl/api/nl/collection?key=${apiKey}`
+
+app.use(compression())
+app.use(minify())
 
 // Stel ejs in als template engine
 app.set('view engine', 'ejs')
@@ -22,7 +27,6 @@ app.get('/', function (req, res) {
   })
 
 })
-
 
 // Maak een route voor quotes
 app.get('/search', function (req, res) {
