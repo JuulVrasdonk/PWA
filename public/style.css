@@ -220,3 +220,17 @@ figcaption {
 .hidden {
     display: none;
 }
+
+.offline-message {
+    width: 100vw;
+    padding: 10px 0;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+}
+
+.offline-message strong {
+    color: white;
+    text-align: center;
+    font-family: var(--text-font);
+}

@@ -1,13 +1,14 @@
 const PRECACHE = 'precache-v1';
 const RUNTIME = 'runtime';
-const CORE_CACHE_NAME = 'offline fallback'
 
 // A list of local resources we always want to be cached.
 const CORE_ASSETS = [
-  '/',
+  '/offline',
   '/js/script.js',
   '/style.css',
-  '/assets/Nachtwacht.jpeg'
+  '/assets/Nachtwacht.jpeg',
+  '/assets/fonts/Rijksmuseum-Normal.woff',
+  '/assets/fonts/Rijksmuseum-Bold.woff',
 ];
 
 // The install handler takes care of precaching the resources we always need.
@@ -40,14 +41,14 @@ self.addEventListener("fetch", (event) => {
   // show cached request from cache
   event.respondWith(
       caches.match(req)
-          .then(cachedRes => {
+          .then(cachedRes => { 
               if (cachedRes) {
                   return cachedRes
               }
               return fetch(req)
-                  .then((fetchRes) => fetchRes)
+                  .then((fetchRes) =>  fetchRes)
                   .catch((err) => {
-                      return caches.open(CORE_CACHE_NAME)
+                      return caches.open(PRECACHE)
                       .then(cache => cache.match('/offline'))})
       })
   )

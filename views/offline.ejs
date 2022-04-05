@@ -1,11 +1,21 @@
-<%- include('./partials/head.ejs') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%- pageTitle %></title>
+    <script defer type="module" src="/js/script.js"></script>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="manifest" href="/manifest.webmanifest">
+</head>
 <body>
     <header>    
         <h1>Search. Our. Collection.</h1>
     </header>
     <main>
-        <strong>Je bent offline.</strong>
-        <section class="search-section" data-route="normal"></section>
+        <section class="offline-message"><strong>Je bent offline.</strong></section>
     </main>
 </body>
 <%- include('./partials/footer.ejs') %>
+</html>
