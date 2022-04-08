@@ -19,6 +19,13 @@ app.set('views', './views')
 // Stel een static map in
 app.use(express.static('public'))
 
+app.use(function(req, res, next) {
+  if (req.method == "GET" && !(req.rawHeaders.toString().includes("text/html"))) {
+      res.set("Cache-control", "public, max-age=31536000")
+  }
+  next()
+})
+
 
 // Maak een route voor de index
 app.get('/', function (req, res) {
